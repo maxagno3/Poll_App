@@ -7,6 +7,7 @@ function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
+  const [errors, setErrors] = useState([]);
 
   const history = useHistory();
 
@@ -22,8 +23,10 @@ function Signup() {
     axios
       .post("/signup", { name, email, password, passwordConfirmation }, headers)
       .then((res) => console.log(res))
-      .catch((err) => console.log(err));
-    history.push("/login");
+      .catch((err) => setErrors(err));
+    if (errors !== []) {
+      history.push("/login");
+    }
   };
 
   return (
@@ -73,7 +76,7 @@ function Signup() {
           </div>
           <div className="form-group">
             <button type="submit" className="btn btn-primary btn-block">
-              Log in
+              Sign up
             </button>
           </div>
         </form>

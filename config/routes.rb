@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   # Sign up
   get "/signup", to: "users#new"
+  get "/user", to: "users#index"
   post "/signup", to: "users#create"
 
   # Login and Logout
@@ -10,7 +11,7 @@ Rails.application.routes.draw do
   delete "/logout", to: "sessions#destroy"
 
   # Polls
-  resources :polls, only: [:create, :index]
+  resources :polls, only: [:create, :index, :show]
   
   get "*path", to: "pages#index", via: :all
 end

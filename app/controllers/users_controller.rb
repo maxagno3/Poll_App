@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  protect_from_forgery with: :null_session
+  # protect_from_forgery with: :null_session
 
   def new
     @user = User.new
@@ -14,6 +14,10 @@ class UsersController < ApplicationController
     else
       render json: { error: @user.errors.full_messages }, status: 422
     end
+  end
+
+  def index
+    render json: {user: current_user}
   end
 
   # private
