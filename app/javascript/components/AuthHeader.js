@@ -23,12 +23,19 @@ function AuthHeader(props) {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <div className="actions d-flex justify-content-between align-items-center flex-wrap my-2 my-lg-0">
             <div>
-              <button className="btn btn-link mx-2">{props.isLoggedIn.name}</button>
+              <button className="btn btn-link mx-2">
+                {props.isLoggedIn.name}
+              </button>
             </div>
             <div>
-              <Link to="/signup" className="btn btn-link mx-2">
-                <button className="btn btn-link mx-2">Log out</button>
+              <Link to="/newPoll" className="btn btn-link mx-2">
+                <button className="btn btn-link mx-2">Create Poll</button>
               </Link>
+            </div>
+            <div>
+              <button className="btn btn-link mx-2" onClick={props.handleLogout}>
+                Log out
+              </button>
             </div>
           </div>
         </div>

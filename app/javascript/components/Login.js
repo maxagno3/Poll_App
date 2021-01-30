@@ -20,12 +20,12 @@ function Login(props) {
 
     axios
       .post("/login", { email, password }, headers)
-      .then(({ data }) => console.log(data.user))
+      .then((res) => {
+        if (res.data.user) {
+          history.push("/allPolls");
+        }
+      })
       .catch((err) => setErrors(err));
-    if (errors !== []) {
-      setErrors([]);
-      history.push("/polls");
-    }
   };
 
   return (
@@ -63,7 +63,7 @@ function Login(props) {
             </div>
           </form>
           <p className="text-center">
-            Don't have an account? <a href="/signup">Sign up</a>
+            Don't have an account? <a href="/register">Sign up</a>
           </p>
         </div>
       </div>

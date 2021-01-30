@@ -1,30 +1,49 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Route, Switch } from "react-router-dom";
-import AllPolls from "./AllPolls";
+import { Redirect, Route, Switch, useHistory } from "react-router-dom";
+import Polls from "./Polls";
 import Header from "./Header";
 import Login from "./Login";
-import Polls from "./Polls";
+import NewPoll from "./NewPolls";
 import Signup from "./Signup";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState();
 
+  const history = useHistory();
+
   useEffect(() => {
     axios
       .get("/user")
       .then(({ data }) => setIsLoggedIn(data.user))
-      .catch((_err) => setIsLoggedIn(""));
+      .catch((err) => console.log(err));
   }, []);
+
+  const handleLogout = () => {
+    let headers = {
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRF-TOKEN": document.querySelector('[name="csrf-token"]').content,
+      },
+    };
+
+    axios.delete("/logout", headers).then((res) => {
+      console.log(res.status);
+      if (res.status == 200) {
+        // isLoggedIn = "";
+        history.push("/login");
+      }
+    });
+  };
 
   return (
     <>
-      <Header isLoggedIn={isLoggedIn} />
+      <Header isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
       <Switch>
         <Route path="/login" component={Login} />
-        <Route path="/signup" component={Signup} />
-        <Route path="/polls" component={Polls} />
-        <Route path="/allpolls" component={AllPolls} />
+        <Route path="/register" component={Signup} />
+        <Route path="/newPoll" component={NewPoll} />
+        <Route path="/allPolls" component={Polls} />
       </Switch>
     </>
   );

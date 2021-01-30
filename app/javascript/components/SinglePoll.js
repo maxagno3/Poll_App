@@ -1,5 +1,4 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import uuid from "react-uuid";
 
 function SinglePoll(props) {
@@ -22,7 +21,7 @@ function SinglePoll(props) {
                         <label>{option.name}</label>
                       </div>
                     ) : (
-                      <div className="checkbox" onClick={() => props.handleVote(props.poll.id)}>
+                      <div className="checkbox" onClick={() => props.handleVote(props.poll.id, option.id)}>
                         <label>
                           <input type="checkbox" value="" /> {option.name}
                         </label>
@@ -33,11 +32,6 @@ function SinglePoll(props) {
               </div>
             );
           })}
-          <div className="panel-footer text-center">
-            <button type="button" className="btn btn-primary btn-block btn-sm">
-              Vote
-            </button>
-          </div>
         </div>
       </div>
     </div>

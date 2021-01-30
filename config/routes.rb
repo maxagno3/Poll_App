@@ -4,11 +4,11 @@ Rails.application.routes.draw do
 
   # Sign up
   get "/signup", to: "users#new"
-  get "/user", to: "users#index"
   post "/signup", to: "users#create"
-
+  
   # Login and Logout
   post "/login", to: "sessions#create"
+  get "/user", to: "users#index"
   delete "/logout", to: "sessions#destroy"
 
   # Polls

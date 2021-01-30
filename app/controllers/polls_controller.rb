@@ -1,5 +1,5 @@
 class PollsController < ApplicationController
-  before_action :current_user, only: [:create]
+  before_action :authenticate, only: [:create]
 
   def index
     poll = Poll.all
@@ -17,11 +17,6 @@ class PollsController < ApplicationController
         render json: { message: poll.errors.full_messages }
       end
     end
-  end
-
-  def show
-    polls = Poll.find(params[:id])
-    render json: { polls: polls, options: polls.options }
   end
 
   private

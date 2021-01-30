@@ -17,4 +17,10 @@ module SessionsHelper
     session.delete(:user_id)
     @current_user = nil
   end
+
+  def authenticate
+    unless logged_in?
+      render json: { error: "Please login to continue" }
+    end
+  end
 end

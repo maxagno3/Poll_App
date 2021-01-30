@@ -17,7 +17,11 @@ class UsersController < ApplicationController
   end
 
   def index
-    render json: {user: current_user}
+    if logged_in?
+      render json: {user: current_user}
+    else
+      render json: { error: "Unauthorised!" }, status: 422
+    end
   end
 
   # private

@@ -7,7 +7,10 @@ function Header(props) {
   return (
     <>
       {props.isLoggedIn ? (
-        <AuthHeader isLoggedIn={props.isLoggedIn} />
+        <AuthHeader
+          isLoggedIn={props.isLoggedIn}
+          handleLogout={props.handleLogout}
+        />
       ) : (
         <NonAuthHeader />
       )}

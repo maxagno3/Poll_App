@@ -28,7 +28,7 @@ function NonAuthHeader() {
                 </Link>
               </div>
               <div>
-                <Link to="/signup" className="btn btn-link mx-2">
+                <Link to="/register" className="btn btn-link mx-2">
                   <button className="btn btn-link mx-2">Sign up</button>
                 </Link>
               </div>
