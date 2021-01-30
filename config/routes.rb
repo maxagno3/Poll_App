@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  post "/vote", to: 'votes#create'
   root to: 'pages#index'
 
   # Sign up

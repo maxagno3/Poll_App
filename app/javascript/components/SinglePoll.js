@@ -1,5 +1,6 @@
-import React from "react";
-import Options from "./Options";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import uuid from "react-uuid";
 
 function SinglePoll(props) {
   return (
@@ -11,7 +12,27 @@ function SinglePoll(props) {
               <span className="fa fa-line-chart"></span> {props.poll.title}
             </h3>
           </div>
-          <Options options={props.poll.id} />
+          {props.poll.options?.map((option) => {
+            return (
+              <div className="panel-body" key={uuid()}>
+                <ul className="list-group">
+                  <li className="list-group-item">
+                    {props.voted ? (
+                      <div className="checkbox">
+                        <label>{option.name}</label>
+                      </div>
+                    ) : (
+                      <div className="checkbox" onClick={() => props.handleVote(props.poll.id)}>
+                        <label>
+                          <input type="checkbox" value="" /> {option.name}
+                        </label>
+                      </div>
+                    )}
+                  </li>
+                </ul>
+              </div>
+            );
+          })}
           <div className="panel-footer text-center">
             <button type="button" className="btn btn-primary btn-block btn-sm">
               Vote

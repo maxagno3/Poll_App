@@ -14,7 +14,7 @@ function App() {
     axios
       .get("/user")
       .then(({ data }) => setIsLoggedIn(data.user))
-      .catch((err) => console.log(err));
+      .catch((_err) => setIsLoggedIn(""));
   }, []);
 
   return (
