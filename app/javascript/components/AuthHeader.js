@@ -37,15 +37,6 @@ function AuthHeader(props) {
               </NavLink>
             </div>
             <div>
-              <NavLink
-                to="/allPolls"
-                className="btn btn-link mx-2"
-                activeClassName="active"
-              >
-                View polls
-              </NavLink>
-            </div>
-            <div>
               <button
                 className="btn btn-link mx-2"
                 onClick={props.handleLogout}

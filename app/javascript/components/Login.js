@@ -22,7 +22,7 @@ function Login(props) {
       .post("/login", { email, password }, headers)
       .then((res) => {
         if (res.data.user) {
-          history.push("/allPolls");
+          history.push("/");
         }
       })
       .catch((err) => setErrors(err));

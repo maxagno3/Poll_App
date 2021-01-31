@@ -11,7 +11,13 @@ function SinglePoll(props) {
               <span className="fa fa-line-chart"></span> {props.poll.title}
             </h3>
           </div>
-          {props.error ? <small style={{color: "red", fontSize: "13px"}}>{props.error}</small> : ""}
+          {props.error ? (
+            <small style={{ color: "red", fontSize: "13px" }}>
+              {props.error}
+            </small>
+          ) : (
+            ""
+          )}
           {props.poll.options?.map((option) => {
             return (
               <div className="panel-body" key={uuid()}>
@@ -28,7 +34,7 @@ function SinglePoll(props) {
                         {option.name}
                       </div>
                       <div>
-                        <h1>{option.vote_count} votes have been casted</h1>
+                        <h1>{option.vote_count} votes </h1>
                       </div>
                     </div>
                   </li>

@@ -3,7 +3,7 @@ import uuid from "react-uuid";
 import React, { useEffect, useState } from "react";
 import SinglePoll from "./SinglePoll";
 
-function AllPolls() {
+function Polls() {
   const [allPolls, setAllPolls] = useState([]);
   const [votes, setVotes] = useState();
   const [voted, setVoted] = useState(false);
@@ -61,4 +61,4 @@ function AllPolls() {
   );
 }
 
-export default AllPolls;
+export default Polls;

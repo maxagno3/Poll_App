@@ -38,7 +38,7 @@ function Polls() {
       .catch((err) => console.log(err));
 
     if (optionOne && optionTwo && optionThree && optionFour) {
-      history.push("/allPolls");
+      history.push("/");
     }
   };
 
@@ -90,7 +90,7 @@ function Polls() {
           />
           <button className="btn btn-secondary btn-block">Create Poll</button>
         </form>
-        <Link to="/allPolls">View Polls</Link>
+        <Link to="/">View Polls</Link>
       </div>
     </div>
   );
