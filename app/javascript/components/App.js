@@ -11,12 +11,13 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState();
 
   const history = useHistory();
+  const getUser = async () => {
+    const { data } = await axios.get("/user");
+    setIsLoggedIn(data?.user);
+  };
 
   useEffect(() => {
-    axios
-      .get("/user")
-      .then(({ data }) => setIsLoggedIn(data.user))
-      .catch((err) => console.log(err));
+    getUser();
   }, []);
 
   const handleLogout = () => {
@@ -28,9 +29,8 @@ function App() {
     };
 
     axios.delete("/logout", headers).then((res) => {
-      console.log(res.status);
       if (res.status == 200) {
-        // isLoggedIn = "";
+        setIsLoggedIn("");
         history.push("/login");
       }
     });

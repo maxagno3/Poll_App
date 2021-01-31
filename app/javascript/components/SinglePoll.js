@@ -11,22 +11,26 @@ function SinglePoll(props) {
               <span className="fa fa-line-chart"></span> {props.poll.title}
             </h3>
           </div>
+          {props.error ? <small style={{color: "red", fontSize: "13px"}}>{props.error}</small> : ""}
           {props.poll.options?.map((option) => {
             return (
               <div className="panel-body" key={uuid()}>
                 <ul className="list-group">
                   <li className="list-group-item">
-                    {props.voted ? (
-                      <div className="checkbox">
-                        <label>{option.name}</label>
+                    <div className="d-flex p-2 justify-content-between">
+                      <div
+                        className="checkbox"
+                        onClick={() =>
+                          props.handleVote(props.poll.id, option.id)
+                        }
+                        style={{ cursor: "pointer" }}
+                      >
+                        {option.name}
                       </div>
-                    ) : (
-                      <div className="checkbox" onClick={() => props.handleVote(props.poll.id, option.id)}>
-                        <label>
-                          <input type="checkbox" value="" /> {option.name}
-                        </label>
+                      <div>
+                        <h1>{option.vote_count} votes have been casted</h1>
                       </div>
-                    )}
+                    </div>
                   </li>
                 </ul>
               </div>

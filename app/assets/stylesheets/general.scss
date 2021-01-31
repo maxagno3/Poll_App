@@ -31,4 +31,21 @@ button,
 a {
   cursor: pointer;
   text-decoration: none;
+  color: #fff !important;
+}
+
+.active {
+  border: 1px solid #fff;
+  color: #fff;
+  &:hover {
+    color: #fff !important;
+  }
+}
+
+.col-md-4 {
+  margin: 0 auto;
+}
+
+.w-70 {
+  width: 70%;
 }

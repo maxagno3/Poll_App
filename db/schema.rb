@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2021_01_30_104023) do
     t.integer "poll_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "vote_count"
+    t.integer "vote_count", default: 0
     t.index ["poll_id"], name: "index_options_on_poll_id"
   end
 

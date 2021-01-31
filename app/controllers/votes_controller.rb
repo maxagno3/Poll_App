@@ -12,7 +12,7 @@ class VotesController < ApplicationController
       if vote.save
         option = poll.options.detect { |option| option.id == vote.option_id }
         option.increment!(:vote_count)
-        render json: { message: "Your vote has been cast.", voted: true }
+        render json: { message: "Your vote has been cast.", votes: option.vote_count }
       else
         render json: { error: vote.errors.full_messages }
       end

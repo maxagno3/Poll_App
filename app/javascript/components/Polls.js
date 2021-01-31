@@ -5,7 +5,9 @@ import SinglePoll from "./SinglePoll";
 
 function AllPolls() {
   const [allPolls, setAllPolls] = useState([]);
+  const [votes, setVotes] = useState();
   const [voted, setVoted] = useState(false);
+  const [error, settError] = useState();
 
   useEffect(() => {
     let headers = {
@@ -29,7 +31,15 @@ function AllPolls() {
     };
     axios
       .post("/vote", { poll_id: pollId, option_id: optionId }, headers)
-      .then(({ data }) => setVoted(data.voted))
+      .then((res) => {
+        if (res.data.votes) {
+          setVotes(res.data.votes);
+          setVoted(true);
+        } else {
+          setVoted(false);
+          settError(res.data.error);
+        }
+      })
       .catch((err) => console.log(err));
   };
 
@@ -41,7 +51,9 @@ function AllPolls() {
             poll={poll}
             key={uuid()}
             handleVote={handleVote}
+            votes={votes}
             voted={voted}
+            error={error}
           />
         );
       })}
