@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     if @user.save
       render json: { message: "User created successfully" }
     else
-      render json: { error: @user.errors.full_messages }, status: 422
+      render json: { error: @user.errors.full_messages }
     end
   end
 
@@ -20,7 +20,7 @@ class UsersController < ApplicationController
     if logged_in?
       render json: {user: current_user}
     else
-      render json: { error: "Unauthorised!" }, status: 422
+      render json: { error: "Unauthorised!" }
     end
   end
 

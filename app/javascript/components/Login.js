@@ -2,10 +2,10 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
-function Login(props) {
+function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState([]);
+  const [errors, setErrors] = useState();
 
   const history = useHistory();
 
@@ -23,9 +23,11 @@ function Login(props) {
       .then((res) => {
         if (res.data.user) {
           history.push("/");
+        } else {
+          setErrors(res.data.error);
         }
       })
-      .catch((err) => setErrors(err));
+      .catch((err) => setErrors(err.error));
   };
 
   return (
@@ -35,6 +37,12 @@ function Login(props) {
           <form onSubmit={handleSubmit}>
             <h2 className="text-center display-4 m-3">Login</h2>
             <div className="form-group">
+              <small
+                className="d-flex justify-content-center"
+                style={{ color: "red", fontSize: "13px" }}
+              >
+                {errors ? errors : ""}
+              </small>
               <input
                 type="email"
                 className="form-control"

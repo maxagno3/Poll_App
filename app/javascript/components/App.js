@@ -41,7 +41,7 @@ function App() {
     <BrowserRouter>
       <Header isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
       <Switch>
-        <Route path="/" component={Polls} />
+        <Route exact path="/" component={Polls} />
         {isLoggedIn ? (
           <Route path="/newPoll" component={NewPoll} />
         ) : (

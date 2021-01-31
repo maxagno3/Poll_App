@@ -7,7 +7,7 @@ function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
-  const [errors, setErrors] = useState([]);
+  const [errors, setErrors] = useState();
 
   const history = useHistory();
 
@@ -22,11 +22,17 @@ function Signup() {
 
     axios
       .post("/signup", { name, email, password, passwordConfirmation }, headers)
-      .then((res) => console.log(res))
+      .then((res) => {
+        if (res.data.user) {
+          history.push("/login");
+        } else {
+          setErrors(res.data.error);
+        }
+      })
       .catch((err) => setErrors(err));
-    if (errors !== []) {
-      history.push("/login");
-    }
+    // if (errors !== []) {
+    //   history.push("/login");
+    // }
   };
 
   return (
@@ -35,6 +41,12 @@ function Signup() {
         <form onSubmit={handleSubmit}>
           <h2 className="text-center display-4 m-3">Sign up</h2>
           <div className="form-group">
+            <small
+              className="d-flex justify-content-center"
+              style={{ color: "red", fontSize: "13px" }}
+            >
+              {errors ? errors : ""}
+            </small>
             <input
               type="text"
               className="form-control"
